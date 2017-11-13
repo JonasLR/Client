@@ -11,54 +11,36 @@
 
 </head>
 <body>
-<div class="topnav" id="myTopnav">
-    <a href="home.html" class="active">Home</a>
-    <a href="create%20event.html">Create Event</a>
-    <a href="registered%20events.html">Registered Events</a>
-    <a href="about.html">About</a>
-</div>
-
-<div class="page-header">
-    <h1>DØK SOCIAL</h1>
-</div>
-
-<div class="page-sub-header">
-<h2>Events</h2>
-<p>Scroll through a whole semester of great DØK Events:</p>
-
-</div>
 
 <div class="container">
 
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Event Name</th>
-                <th>Location</th>
-                <th>Price</th>
-                <th>Date</th>
-                <th>Description</th>
+    <div class="topnav" id="myTopnav"></div>
 
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Hardcoded</td>
-                <td>Example</td>
-                <td>100 kr</td>
-                <td>2017-10-19 20:00</td>
-                <td>Party of the year</td>
-            </tr>
-            </tbody>
-        </table>
+    <div class="page-header">
+        <h1>DØK SOCIAL</h1>
     </div>
+
+    <div class="page-sub-header">
+        <h2>Events</h2>
+        <p>Scroll through a whole semester of great DØK Events:</p>
+    </div>
+
+        <div class="row" id="event-list">
+        </div>
 </div>
 
 <footer class="footer">
-    <div class="footer">
-        <p class="text-muted">2017 © All rights reserved - Døk Social</p>
+    <div class="container">
+        <p class="text-muted">2017 © All rights reserved - DØK Social</p>
     </div>
 </footer>
+
+
+<script src="lib/js/jquery-3.2.1.js"></script>
+<script src="lib/js/bootstrap.js"></script>
+<script src="js/sdk.js"></script>
+<script src="js/home.js"></script>
+<script src="nav.html"></script>
 
 </body>
 </html>
