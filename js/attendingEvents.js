@@ -4,8 +4,8 @@ $(document).ready(() => {
 
     const $AttendingEventList = $("#attending-event-list");
 
-    SDK.Event.getAttendingEvents((err, events) => {
-        if (err) throw err;
+    SDK.Student.getAttendingEvents((err, events) => {
+        events = JSON.parse(events);
         events.forEach(event => {
 
             const eventHtml = `<!--tegnet før og efter nedenstående gør at man kan skrive html kode-->
@@ -26,13 +26,7 @@ $(document).ready(() => {
            </table>
         </div>`;
 
-            $eventList.append(eventHtml);
-        });
-
-        $(".attend-button").click(function () {
-            const idEvent = $(this).data("event-id");
-            const event = events.find(e => e.id === idEvent);
-            SDK.Event.attendEvent(event);
+            $AttendingEventList.append(eventHtml);
         });
     });
 });

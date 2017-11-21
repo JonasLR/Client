@@ -9,38 +9,36 @@
     <title>DØK Social</title>
 
 </head>
-
 <body>
 
-<div class="page-header">
-    <h1>DØK SOCIAL</h1>
-</div>
+<div class="container">
 
-<div class="page-sub-header">
-    <h2>Login</h2>
-    <p>Login to scroll through a whole semester of great DØK Events:</p>
-</div>
+    <div class="row" id="nav-container"></div>
 
-<div class="login">
+    <div class="page-header">
+        <h1>DØK SOCIAL</h1>
+    </div>
+
     <div class="row">
         <div class="col-lg-6">
-            <div class="form-group">
-                <label><b>First Name</b></label>
-                <input type="text" placeholder="Enter first name" id="inputFirstName" required>
+            <div class="page-header">
+                <h1>Login</h1>
+                <div id="load-test"></div>
             </div>
             <div class="form-group">
-                <label><b>Last Name</b></label>
-                <input type="text" placeholder="Enter last name" id="inputLastName" required>
+                <label class="control-label" for="inputEmail">Email address</label>
+                <input type="email" class="form-control" id="inputEmail" placeholder="Email">
             </div>
             <div class="form-group">
-                <label><b>Password</b></label>
-                <input type="password" placeholder="Enter password" id="inputPassword" required>
+                <label class="control-label" for="inputPassword">Password</label>
+                <input type="password" class="form-control" id="inputPassword" placeholder="Password">
             </div>
-            <button class="btn btn-default" id="loginButton">Login</button>
-            <a href="register.html">Register as student</a>
+            <button style="margin-bottom: 40px" class="btn btn-default" id="loginButton">Submit</button>
         </div>
     </div>
+
 </div>
+
 
 <footer class="footer">
     <div class="footer">

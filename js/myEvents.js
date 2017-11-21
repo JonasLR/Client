@@ -5,7 +5,7 @@ $(document).ready(() => {
     const $MyEventList = $("#my-event-list");
 
     SDK.Event.getAttendingEvents((err, events) => {
-        if (err) throw err;
+        events = JSON.parse(events);
         events.forEach(event => {
 
             const eventHtml = `<!--tegnet før og efter nedenstående gør at man kan skrive html kode-->
@@ -35,5 +35,5 @@ $(document).ready(() => {
             SDK.Event.currentEvent(event);
         });
     });
-})
+});
 

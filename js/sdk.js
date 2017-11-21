@@ -3,6 +3,12 @@ const SDK = {
     request: (options, cb) => {
 
         let token = {"authorization": localStorage.getItem("token")}
+      /*  let headers = {};
+        if (options.headers) {
+            Object.keys(options.headers).forEach((h) => {
+                headers[h] = (typeof options.headers[h] === 'object') ? JSON.stringify(options.headers[h]) : options.headers[h];
+            });
+        }*/
 
         $.ajax({
             url: SDK.serverURL + options.url,
@@ -102,12 +108,11 @@ const SDK = {
         }, cb);
         },
     },
-    Login: {
-        login: (firstName, lastName, password, cb) => {
+    Student: {
+        login: (email, password, cb) => {
             SDK.request({
                 data: {
-                    firstName: firstName,
-                    lastName: lastName,
+                    email: email,
                     password: password
                 },
                 url: "/login",
@@ -117,15 +122,14 @@ const SDK = {
                 //On login-error
                 if(err) return cb(err);
 
-                SDK.Storage.persist("idToken", data.idToken);
-                SDK.Storage.persist("idStudent", data.idStudent);
-                SDK.Storage.persist("student", data.student);
+                localStorage.setItem("token", data);
 
                 cb(null, data);
             });
         },
-    },
-    Student: {
+        current: () => {
+            return SDK.Storage.load("Student");
+        },
         currentStudent: (cb) => {
             SDK.request({
                 method: "GET",
@@ -135,7 +139,7 @@ const SDK = {
         getAttendingEvents: (cb) => {
             SDK.request({
                 method: "GET",
-                url: "/students/" + SDK.Student.currentStudent().id + "/events",
+                url: "/students/" + SDK.Student.currentStudent().idStudent + "/events",
                 headers: {
                     authorization: SDK.Storage.load("token")
                 }
@@ -152,24 +156,22 @@ const SDK = {
                 const currentStudent = SDK.Student.current();
                 if (currentStudent) {
                     $(".navbar-right").html(`
-            <li><a href="my-page.html">Your orders</a></li>
+            <li><a href="home.html">Events</a></li>
             <li><a href="#" id="logout-link">Logout</a></li>
           `);
                 } else {
                     $(".navbar-right").html(`
-            <li><a href="login.html">Log-in <span class="sr-only">(current)</span></a></li>
+            <li><a href="login.html">Login <span class="sr-only">(current)</span></a></li>
           `);
                 }
-                $("#logout-link").click(() => SDK.User.logOut());
+                $("#logout-link").click(() => SDK.Student.logOut());
                 cb && cb();
             });
         }
     },
-
     Storage: {
-        prefix: "DoekSocialSDK",
-            persist:
-        (key, value) => {
+        prefix: "doekEventsSDK",
+        persist: (key, value) => {
             window.localStorage.setItem(SDK.Storage.prefix + key, (typeof value === 'object') ? JSON.stringify(value) : value)
         },
         load: (key) => {
