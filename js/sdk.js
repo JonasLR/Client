@@ -94,21 +94,20 @@ const SDK = {
             }, cb);
         },
     },
-    Register: {
-        register: (firstName, lastName, password, cb) => {
+    Student: {
+        register: (firstName, lastName, email, password, cb) => {
             SDK.request({
                 data: {
                     firstName: firstName,
                     lastName: lastName,
+                    email: email,
                     password: password
                 },
                 url: "/register",
                 method: "POST",
                 headers: {authorization: SDK.Storage.load("idToken")}
-        }, cb);
+            }, cb);
         },
-    },
-    Student: {
         login: (email, password, cb) => {
             SDK.request({
                 data: {
@@ -154,10 +153,10 @@ const SDK = {
         loadNav: (cb) => {
             $("#nav-container").load("nav.html", () => {
                 const currentStudent = SDK.Student.current();
+
                 if (currentStudent) {
                     $(".navbar-right").html(`
-            <li><a href="home.html">Events</a></li>
-            <li><a href="#" id="logout-link">Logout</a></li>
+            <li><a href="home.html" id="logout-link">Logout</a></li>
           `);
                 } else {
                     $(".navbar-right").html(`

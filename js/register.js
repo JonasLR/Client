@@ -4,11 +4,13 @@ $(document).ready(() => {
 
     $("#registerButton").click(() => {
 
-        const firstName = $("#inputFirstName").val();
-        const lastName = $("#inputLastName").val();
-        const password = $("#inputPassword").val();
+        const firstName = $("#registerFirstName").val();
+        const lastName = $("#registerLastName").val();
+        const email = $("#registerEmail").val();
+        const password = $("#registerPassword").val();
+        const verifyPassword = $("#verifyPassword").val();
 
-        SDK.Student.login(firstName, lastName, password, (err, data) => {
+        SDK.Student.register(firstName, lastName, email, password, verifyPassword, (err, data) => {
             if (err && err.xhr.status === 401) {
                 $(".form-group").addClass("has-error");
             }

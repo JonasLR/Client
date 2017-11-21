@@ -12,6 +12,8 @@
 
 <body>
 
+<div class="row" id="nav-container"></div>
+
 <div class="page-header">
     <h1>DØK SOCIAL</h1>
 </div>
@@ -22,6 +24,8 @@
 </div>
 
 <div class="container">
+
+
 
     <div class="container">
         <div class="col-lg-6">
@@ -34,8 +38,16 @@
                 <input type="text" placeholder="Enter last name" id="registerLastName" required>
             </div>
             <div class="form-group">
+                <label><b>Email</b></label>
+                <input type="text" placeholder="Enter email" id="registerEmail" required>
+            </div>
+            <div class="form-group">
                 <label><b>Password</b></label>
                 <input type="password" placeholder="Enter password" id="registerPassword" required>
+            </div>
+            <div class="form-group">
+                <label><b>Verify Password</b></label>
+                <input type="password" placeholder="Enter password again" id="verifyPassword" required>
             </div>
             <button class="btn btn-default" id="registerButton">Register</button>
 
@@ -54,7 +66,7 @@
 <script src="lib/js/jquery-3.2.1.js"></script>
 <script src="lib/js/bootstrap.js"></script>
 <script src="js/sdk.js"></script>
-<script src="js/login.js"></script>
+<script src="js/register.js"></script>
 
 </body>
 </html>
