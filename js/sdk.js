@@ -2,17 +2,12 @@ const SDK = {
     serverURL: "http://localhost:8080/api",
     request: (options, cb) => {
 
-        let headers = {};
-        if (options.headers) {
-            Object.keys(options.headers).forEach((h) => {
-                headers[h] = (typeof options.headers[h] === 'object') ? JSON.stringify(options.headers[h]) : options.headers[h];
-            });
-        }
+        let token = {"authorization": localStorage.getItem("token")}
 
         $.ajax({
             url: SDK.serverURL + options.url,
             method: options.method,
-            headers: headers,
+            headers: token,
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify(options.data),
@@ -154,17 +149,21 @@ const SDK = {
         },
         loadNav: (cb) => {
             $("#nav-container").load("nav.html", () => {
-                const currentStudent = SDK.Student.currentStudent();
-            if (currentStudent) {
-                $(".navbar-right").html(`
-                <li><a href="home.html">Home</a></li>
-                <li><a href="create%20event.html">Create Event</a></li>
-                <li><a href="registered%20events.html">Registered Events</a></li>
-                <li><a href="about.html">About</a></li>
-               `);
-            cb && cb();
-            }
-        })
+                const currentStudent = SDK.Student.current();
+                if (currentStudent) {
+                    $(".navbar-right").html(`
+            <li><a href="my-page.html">Your orders</a></li>
+            <li><a href="#" id="logout-link">Logout</a></li>
+          `);
+                } else {
+                    $(".navbar-right").html(`
+            <li><a href="login.html">Log-in <span class="sr-only">(current)</span></a></li>
+          `);
+                }
+                $("#logout-link").click(() => SDK.User.logOut());
+                cb && cb();
+            });
+        }
     },
 
     Storage: {

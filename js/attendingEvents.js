@@ -2,7 +2,7 @@ $(document).ready(() => {
 
     SDK.Student.loadNav();
 
-    const $MyEventList = $("#my-event-list");
+    const $AttendingEventList = $("#attending-event-list");
 
     SDK.Event.getAttendingEvents((err, events) => {
         if (err) throw err;
@@ -32,8 +32,9 @@ $(document).ready(() => {
         $(".attend-button").click(function () {
             const idEvent = $(this).data("event-id");
             const event = events.find(e => e.id === idEvent);
-            SDK.Event.currentEvent(event);
+            SDK.Event.attendEvent(event);
         });
     });
-})
+});
+
 
