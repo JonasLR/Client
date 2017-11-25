@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link rel="stylesheet" href="lib/css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css">
+
+
+    <meta charset="UTF-8">
+    <title>Home</title>
+
+</head>
+<body>
+
+<div class="modal fade" id="event-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Your list</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>Event Name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                    </tr>
+                    </thead>
+                    <tbody id="basket-tbody">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <a href="attendingEvents.html">
+                    <button type="button" class="btn btn-success">Attend event</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="row" id="nav-container"></div>
+
+    <div class="page-header">
+        <h1>DØK SOCIAL</h1>
+    </div>
+
+    <div class="page-sub-header">
+        <h2>Events</h2>
+        <p>Scroll through a whole semester of great DØK Events:</p>
+    </div>
+
+        <div class="row" id="event-list">
+        </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted">2017 © All rights reserved - DØK Social</p>
+    </div>
+</footer>
+
+
+<script src="lib/js/jquery-3.2.1.js"></script>
+<script src="lib/js/bootstrap.js"></script>
+<script src="js/sdk.js"></script>
+<script src="js/home.js"></script>
+
+</body>
+</html>
