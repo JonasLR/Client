@@ -10,15 +10,26 @@ $(document).ready(() => {
         const password = $("#registerPassword").val();
         const verifyPassword = $("#verifyPassword").val();
 
-        SDK.Student.register(firstName, lastName, email, password, verifyPassword, (err, data) => {
-            if (err && err.xhr.status === 401) {
-                $(".form-group").addClass("has-error");
+        if (!firstName || !lastName || !email || !password || !verifyPassword) {
+            window.alert("Please fill out empty fields")
+
+        } else {
+            if (password !== verifyPassword) {
+                window.alert("Please correct unmatching passwords");
+                return;
             }
-            else if (err){
-                console.log("Something went wrong. Please try again")
-            } else {
-                window.location.href = "home.html";
-            }
-        });
+
+            SDK.Student.register(firstName, lastName, email, password, verifyPassword, (err, data) => {
+                if (err && err.xhr.status === 401) {
+                    $(".form-group").addClass("has-error");
+                }
+                else if (err) {
+                    console.log("Something went wrong. Please try again")
+                } else {
+                    window.alert("You are now logged in");
+                    window.location.href = "home.html";
+                }
+            });
+        }
     });
 });

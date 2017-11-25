@@ -13,6 +13,7 @@ $(document).ready(() => {
             }
             else if (err){
               console.log("Something went wrong. Please try again")
+                window.alert("Please try again")
             } else {
                 window.location.href = "home.html";
             }
