@@ -17,7 +17,7 @@ $(document).ready(() => {
                     <td>${event.date}</td>
                     <td>${event.description}</td>
                     <td><button type="button" id="attend-button" class="btn btn-success attend-button">Attend Event</button></td>
-                    <td><button type="button" id="participants-button" class="btn btn-success participants-button">See Participants</button></td>
+                    <td><button type="button" id="go-to-participants-button" class="btn btn-success participants-button">See Participants</button></td>
                 </tr>
                 `;
 
@@ -30,10 +30,8 @@ $(document).ready(() => {
             SDK.Event.attendEvent(event);
         });
 
-        $(".participants-button").click(function () {
-            const idEvent = $(this).data("event-id");
-            const event = events.find(e => e.id === idEvent);
-            SDK.Event.getAttendingStudents(event);
+        $(".go-to-participants-button").click(() => {
+            window.location.href = "attendingStudents.html"
         });
     });
 });

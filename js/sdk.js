@@ -38,13 +38,13 @@ const SDK = {
 
             SDK.Storage.persist("attendingStudents", attendingStudents);
         },
-        currentEvent: () => {
-            return SDK.Storage.load("dsEvent");
+        current: () => {
+            return SDK.Storage.load("Event");
         },
         updateEvent: (data, cb) => {
             SDK.request({
                 method: "PUT",
-                url: "/events/" + SDK.Event.currentEvent().id + "/update-event",
+                url: "/events/" + SDK.Event.current().id + "/update-event",
                 data: data,
                 headers: {authorization: SDK.Storage.load("idToken")}
             }, cb);
@@ -60,7 +60,7 @@ const SDK = {
         deleteEvent: (data, cb) => {
             SDK.request({
                 method: "PUT",
-                url: "/events/" + SDK.Event.currentEvent().id + "/delete-event",
+                url: "/events/" + SDK.Event.current().id + "/delete-event",
                 data: data,
                 headers: {authorization: SDK.Storage.load("idToken")}
             }, cb);
@@ -74,7 +74,7 @@ const SDK = {
         getAttendingStudents: (cb) => {
             SDK.request({
                 method: "GET",
-                url: "/events/" + SDK.Event.currentEvent().id + "/students",
+                url: "/events/" + SDK.Event.current().id + "/students",
                 headers: {
                     authorization: SDK.Storage.persist("token")
                 }
@@ -90,7 +90,7 @@ const SDK = {
         getMyEvents: (cb) => {
             SDK.request({
                 method: "GET",
-                url: "/events/" + SDK.Student.currentStudent().idStudent + "/myEvents",
+                url: "/events/" + SDK.Student.currentStudent().id + "/myEvents",
                 headers: {
                     authorization: SDK.Storage.load("token")
                 }
@@ -141,7 +141,7 @@ const SDK = {
             });
         },
         current: () => {
-            return SDK.Storage.load("Student");
+            return SDK.Storage.load("token");
         },
         currentStudent: (cb) => {
             SDK.request({
@@ -153,16 +153,16 @@ const SDK = {
         getAttendingEvents: (cb) => {
             SDK.request({
                 method: "GET",
-                url: "/students/" + SDK.Student.currentStudent().idStudent + "/events",
+                url: "/students/" + SDK.Student.current().id + "/events",
                 headers: {
                     authorization: SDK.Storage.load("token")
                 }
             }, cb);
         },
         logout: () => {
-            SDK.Storage.remove("idTokens");
-            SDK.Storage.remove("idStudent");
-            SDK.Storage.remove("student");
+            SDK.Storage.remove("token");
+            SDK.Storage.remove("IdStudent");
+            SDK.Storage.remove("Student");
             window.location.href = "login.html";
         },
         loadNav: (cb) => {
@@ -171,7 +171,7 @@ const SDK = {
 
                 if (currentStudent) {
                     $(".navbar-right").html(`
-            <li><a href="home.html" id="logout-link">Logout</a></li>
+            <li><a href="login.html" id="logout-link">Logout</a></li>
           `);
                 } else {
                     $(".navbar-right").html(`

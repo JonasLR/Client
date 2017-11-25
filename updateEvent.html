@@ -1,10 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <link rel="stylesheet" href="lib/css/bootstrap.css">
+    <link rel="stylesheet" href="lib/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="css/main.css">
+
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Update event</title>
+
 </head>
 <body>
+
+<div class="container">
+
+    <div class="row" id="nav-container"></div>
+
+    <div class="page-sub-header">
+        <h2>Update Event</h2>
+        <p>Update your chosen event:</p>
+    </div>
+
+    <div class="createEvent">
+        <div class="form-group">
+            <label class="control-label" for="updateEventName">Event Name</label>
+            <input type="text" placeholder="Enter name of event" id="updateEventName" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="updateLocation">Location</label>
+            <input type="text" placeholder="Enter location" id="updateLocation" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="updateEventDate">Event Date</label>
+            <input type="text" placeholder="Enter date of event" id="updateEventDate" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="updateDescription">Description</label>
+            <input type="text" placeholder="Enter description" id="updateDescription" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="updatePrice">Price</label>
+            <input type="number" placeholder="Enter price" id="updatePrice" class="form-control" required>
+        </div>
+        <button class="btn btn-default" id="updateEventButton">Update Event</button>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted">2017 © All rights reserved - DØK Social</p>
+    </div>
+</footer>
+
+
+<script src="lib/js/jquery-3.2.1.js"></script>
+<script src="lib/js/bootstrap.js"></script>
+<script src="js/sdk.js"></script>
+<script src="js/updateEvent.js"></script>
 
 </body>
 </html>

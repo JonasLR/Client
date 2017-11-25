@@ -8,7 +8,7 @@ $(document).ready(() => {
         const location = $("#registerLocation").val();
         const eventDate = $("#registerEventDate").val();
         const description = $("#registerDescription").val();
-        const price = $("#verifyPrice").val();
+        const price = $("#registerPrice").val();
 
         SDK.Event.createEvent(eventName, location, eventDate, description, price, (err, data) => {
             if (err && err.xhr.status === 401) {
