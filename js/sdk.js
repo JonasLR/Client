@@ -2,13 +2,7 @@ const SDK = {
     serverURL: "http://localhost:8080/api",
     request: (options, cb) => {
 
-        let token = {"authorization": localStorage.getItem("token")}
-      /*  let headers = {};
-        if (options.headers) {
-            Object.keys(options.headers).forEach((h) => {
-                headers[h] = (typeof options.headers[h] === 'object') ? JSON.stringify(options.headers[h]) : options.headers[h];
-            });
-        }*/
+        let token = {"authorization": SDK.Storage.load("token")}
 
         $.ajax({
             url: SDK.serverURL + options.url,
@@ -71,7 +65,7 @@ const SDK = {
                 headers: {authorization: SDK.Storage.load("idToken")}
             }, cb);
         },
-        getEvents: (cb) => {
+        getEvents: (cb, events) => {
             SDK.request({
                 method: "GET",
                 url: "/events",
@@ -82,7 +76,7 @@ const SDK = {
                 method: "GET",
                 url: "/events/" + SDK.Event.currentEvent().id + "/students",
                 headers: {
-                    authorization: SDK.Storage.load("idToken")
+                    authorization: SDK.Storage.persist("token")
                 }
             }, cb);
         },
@@ -95,18 +89,29 @@ const SDK = {
         },
     },
     Student: {
-        register: (firstName, lastName, email, password, cb) => {
+        register: (firstName, lastName, email, password, verifyPassword, cb) => {
             SDK.request({
                 data: {
                     firstName: firstName,
                     lastName: lastName,
                     email: email,
-                    password: password
+                    password: password,
+                    verifyPassword: verifyPassword
                 },
                 url: "/register",
                 method: "POST",
-                headers: {authorization: SDK.Storage.load("idToken")}
-            }, cb);
+            }, (err, data) => {
+
+                if (err) {
+                    return cb(err);
+                }
+
+                console.log(data);
+
+                SDK.Storage.persist("token", data);
+
+                cb(null, data);
+            });
         },
         login: (email, password, cb) => {
             SDK.request({
@@ -121,7 +126,7 @@ const SDK = {
                 //On login-error
                 if(err) return cb(err);
 
-                localStorage.setItem("token", data);
+                SDK.Storage.persist("token", data);
 
                 cb(null, data);
             });
@@ -144,7 +149,7 @@ const SDK = {
                 }
             }, cb);
         },
-        logOut: () => {
+        logout: () => {
             SDK.Storage.remove("idTokens");
             SDK.Storage.remove("idStudent");
             SDK.Storage.remove("student");
@@ -163,7 +168,7 @@ const SDK = {
             <li><a href="login.html">Login <span class="sr-only">(current)</span></a></li>
           `);
                 }
-                $("#logout-link").click(() => SDK.Student.logOut());
+                $("#logout-link").click(() => SDK.Student.logout());
                 cb && cb();
             });
         }
