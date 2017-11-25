@@ -2,7 +2,7 @@ const SDK = {
     serverURL: "http://localhost:8080/api",
     request: (options, cb) => {
 
-        let token = {"authorization": SDK.Storage.load("token")}
+        let token = {"authorization": SDK.Storage.load("token")};
 
         $.ajax({
             url: SDK.serverURL + options.url,
@@ -87,6 +87,15 @@ const SDK = {
                 headers: {authorization: SDK.Storage.load("idToken")}
             }, cb);
         },
+        getMyEvents: (cb) => {
+            SDK.request({
+                method: "GET",
+                url: "/events/" + SDK.Student.currentStudent().idStudent + "/myEvents",
+                headers: {
+                    authorization: SDK.Storage.load("token")
+                }
+            }, cb);
+        },
     },
     Student: {
         register: (firstName, lastName, email, password, verifyPassword, cb) => {
@@ -138,6 +147,7 @@ const SDK = {
             SDK.request({
                 method: "GET",
                 url: "/students/profile",
+                headers: {authorization: SDK.Storage.load("token")}
             }, cb);
         },
         getAttendingEvents: (cb) => {

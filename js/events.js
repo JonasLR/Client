@@ -6,9 +6,9 @@ $(document).ready(() => {
 
     SDK.Event.getEvents((cb, events) => {
         events = JSON.parse(events);
-        events.forEach(event => {
+        events.forEach((event) => {
 
-            const eventHtml = `<!--tegnet før og efter nedenstående gør at man kan skrive html kode-->
+            const eventHtml = `
                 <tr>
                     <td>${event.name}</td>
                     <td>${event.owner}</td>
@@ -17,6 +17,7 @@ $(document).ready(() => {
                     <td>${event.date}</td>
                     <td>${event.description}</td>
                     <td><button type="button" id="attend-button" class="btn btn-success attend-button">Attend Event</button></td>
+                    <td><button type="button" id="participants-button" class="btn btn-success participants-button">See Participants</button></td>
                 </tr>
                 `;
 
@@ -29,5 +30,10 @@ $(document).ready(() => {
             SDK.Event.attendEvent(event);
         });
 
+        $(".participants-button").click(function () {
+            const idEvent = $(this).data("event-id");
+            const event = events.find(e => e.id === idEvent);
+            SDK.Event.getAttendingStudents(event);
+        });
     });
 });
