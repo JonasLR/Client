@@ -46,29 +46,50 @@ const SDK = {
                 method: "PUT",
                 url: "/events/" + SDK.Event.current().id + "/update-event",
                 data: data,
-                headers: {authorization: SDK.Storage.load("idToken")}
+                headers: {authorization: SDK.Storage.load("idEvent")}
             }, cb);
         },
-        createEvent: (data, cb) => {
+        createEvent: (eventName, location, eventDate, description, price, cb) => {
             SDK.request({
                 method: "POST",
                 url: "/events",
-                data: data,
-                headers: {authorization: SDK.Storage.load("idToken")}
-            }, cb);
+                data: {
+                    eventName: eventName,
+                    location: location,
+                    eventDate: eventDate,
+                    description: description,
+                    price: price
+                },
+            }, (err, data) => {
+
+                if (err) {
+                    return cb(err);
+                }
+
+                console.log(data);
+
+                SDK.Storage.persist("token", data);
+
+                cb(null, data);
+            });
         },
         deleteEvent: (data, cb) => {
             SDK.request({
                 method: "PUT",
                 url: "/events/" + SDK.Event.current().id + "/delete-event",
                 data: data,
-                headers: {authorization: SDK.Storage.load("idToken")}
+                headers: {authorization: SDK.Storage.load("idEvent")}
             }, cb);
         },
         getEvents: (cb, events) => {
             SDK.request({
                 method: "GET",
                 url: "/events",
+                headers: {
+                    filter: {
+                        include: ["events"]
+                    }
+                }
             }, cb);
         },
         getAttendingStudents: (cb) => {
@@ -76,21 +97,14 @@ const SDK = {
                 method: "GET",
                 url: "/events/" + SDK.Event.current().id + "/students",
                 headers: {
-                    authorization: SDK.Storage.persist("token")
+                    authorization: SDK.Storage.load("token")
                 }
-            }, cb);
-        },
-        joinEvent: (cb) => {
-            SDK.request({
-                method: "POST",
-                url: "/events/join",
-                headers: {authorization: SDK.Storage.load("idToken")}
             }, cb);
         },
         getMyEvents: (cb) => {
             SDK.request({
                 method: "GET",
-                url: "/events/" + SDK.Student.currentStudent().id + "/myEvents",
+                url: "/events/" + SDK.Student.current().id + "/myEvents",
                 headers: {
                     authorization: SDK.Storage.load("token")
                 }
@@ -100,6 +114,8 @@ const SDK = {
     Student: {
         register: (firstName, lastName, email, password, verifyPassword, cb) => {
             SDK.request({
+                method: "POST",
+                url: "/register",
                 data: {
                     firstName: firstName,
                     lastName: lastName,
@@ -107,8 +123,7 @@ const SDK = {
                     password: password,
                     verifyPassword: verifyPassword
                 },
-                url: "/register",
-                method: "POST",
+
             }, (err, data) => {
 
                 if (err) {
