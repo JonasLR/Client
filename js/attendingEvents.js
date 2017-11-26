@@ -2,23 +2,24 @@ $(document).ready(() => {
 
     SDK.Student.loadNav();
 
-    const $AttendingEventList = $("#attending-event-list");
+    const $attendingEventList = $("#attending-event-list");
 
-    SDK.Student.getAttendingEvents((err, Event) => {
-        Event = JSON.parse(Event);
-        Event.forEach(event => {
+    SDK.Student.getAttendingEvents((err, events) => {
+        events = JSON.parse(events);
+        events.forEach(event => {
 
         const eventHtml = `
             <tr>
                 <td>${event.eventName}</td>
+                <td>${event.owner}</td>
                 <td>${event.location}</td>
+                <td>${event.price}</td>
                 <td>${event.eventDate}</td>
                 <td>${event.description}</td>
-                <td>${event.price}</td>
             </tr>
             `;
 
-            $AttendingEventList.append(eventHtml);
+            $attendingEventList.append(eventHtml);
         });
     });
 });

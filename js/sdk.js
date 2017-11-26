@@ -60,18 +60,8 @@ const SDK = {
                     description: description,
                     price: price
                 },
-            }, (err, data) => {
-
-                if (err) {
-                    return cb(err);
-                }
-
-                console.log(data);
-
-                SDK.Storage.persist("token", data);
-
-                cb(null, data);
-            });
+                headers: {authorization: SDK.Storage.load("token")}
+            }, cb);
         },
         deleteEvent: (data, cb) => {
             SDK.request({

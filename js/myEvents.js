@@ -11,10 +11,11 @@ $(document).ready(() => {
         const eventHtml = `
             <tr>
                 <td>${event.eventName}</td>
+                <td>${event.owner}</td>
                 <td>${event.location}</td>
+                <td>${event.price}</td>
                 <td>${event.eventDate}</td>
                 <td>${event.description}</td>
-                <td>${event.price}</td>
                 <td><button type="button" id="go-to-update-event-button" class="btn btn-success update-event-button">Update</button></td>
                 <td><button type="button" id="delete-event-button" class="btn btn-success delete-event-button">Delete</button></td>
             </tr>
