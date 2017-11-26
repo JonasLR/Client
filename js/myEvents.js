@@ -2,37 +2,35 @@ $(document).ready(() => {
 
     SDK.Student.loadNav();
 
-    const $MyEventList = $("#my-event-list");
+    const $myEventList = $("#my-event-list");
 
-    SDK.Event.getAttendingEvents((err, events) => {
+    SDK.Event.getMyEvents((err, events) => {
         events = JSON.parse(events);
         events.forEach(event => {
 
-            const eventHtml = `<!--tegnet før og efter nedenstående gør at man kan skrive html kode-->
-        <div class="container">
-           <table class="table">
-              <tr>
-                <th>Event Name</th>
+        const eventHtml = `
+            <tr>
                 <td>${event.eventName}</td>
-                <th>Location</th>
                 <td>${event.location}</td>
-                <th>Event Date</th>
                 <td>${event.eventDate}</td>
-                <th>Description</th>
                 <td>${event.description}</td>
-                <th>Price</th>
                 <td>${event.price}</td>
-              </tr>
-           </table>
-        </div>`;
+                <td><button type="button" id="go-to-update-event-button" class="btn btn-success update-event-button">Update</button></td>
+                <td><button type="button" id="delete-event-button" class="btn btn-success delete-event-button">Delete</button></td>
+            </tr>
+            `;
 
-            $eventList.append(eventHtml);
+            $myEventList.append(eventHtml);
         });
 
-        $(".attend-button").click(function () {
+        $(".go-to-update-event-button").click(() => {
+            window.location.href = "updateEvent.html"
+        });
+
+        $(".delete-event-button").click(function () {
             const idEvent = $(this).data("event-id");
             const event = events.find(e => e.id === idEvent);
-            SDK.Event.currentEvent(event);
+            SDK.Event.deleteEvent(event);
         });
     });
 });

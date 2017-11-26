@@ -2,7 +2,7 @@ const SDK = {
     serverURL: "http://localhost:8080/api",
     request: (options, cb) => {
 
-        let token = {"authorization": SDK.Storage.load("token")}
+        let token = {"authorization": SDK.Storage.load("token")};
 
         $.ajax({
             url: SDK.serverURL + options.url,
@@ -38,59 +38,84 @@ const SDK = {
 
             SDK.Storage.persist("attendingStudents", attendingStudents);
         },
-        currentEvent: () => {
-            return SDK.Storage.load("dsEvent");
+        current: () => {
+            return SDK.Storage.load("Event");
         },
         updateEvent: (data, cb) => {
             SDK.request({
                 method: "PUT",
-                url: "/events/" + SDK.Event.currentEvent().id + "/update-event",
+                url: "/events/" + SDK.Event.current().id + "/update-event",
                 data: data,
-                headers: {authorization: SDK.Storage.load("idToken")}
+                headers: {authorization: SDK.Storage.load("idEvent")}
             }, cb);
         },
-        createEvent: (data, cb) => {
+        createEvent: (eventName, location, eventDate, description, price, cb) => {
             SDK.request({
                 method: "POST",
                 url: "/events",
-                data: data,
-                headers: {authorization: SDK.Storage.load("idToken")}
-            }, cb);
+                data: {
+                    eventName: eventName,
+                    location: location,
+                    eventDate: eventDate,
+                    description: description,
+                    price: price
+                },
+            }, (err, data) => {
+
+                if (err) {
+                    return cb(err);
+                }
+
+                console.log(data);
+
+                SDK.Storage.persist("token", data);
+
+                cb(null, data);
+            });
         },
         deleteEvent: (data, cb) => {
             SDK.request({
                 method: "PUT",
-                url: "/events/" + SDK.Event.currentEvent().id + "/delete-event",
+                url: "/events/" + SDK.Event.current().id + "/delete-event",
                 data: data,
-                headers: {authorization: SDK.Storage.load("idToken")}
+                headers: {authorization: SDK.Storage.load("idEvent")}
             }, cb);
         },
         getEvents: (cb, events) => {
             SDK.request({
                 method: "GET",
                 url: "/events",
+                headers: {
+                    filter: {
+                        include: ["events"]
+                    }
+                }
             }, cb);
         },
         getAttendingStudents: (cb) => {
             SDK.request({
                 method: "GET",
-                url: "/events/" + SDK.Event.currentEvent().id + "/students",
+                url: "/events/" + SDK.Event.current().id + "/students",
                 headers: {
-                    authorization: SDK.Storage.persist("token")
+                    authorization: SDK.Storage.load("token")
                 }
             }, cb);
         },
-        joinEvent: (cb) => {
+        getMyEvents: (cb) => {
             SDK.request({
-                method: "POST",
-                url: "/events/join",
-                headers: {authorization: SDK.Storage.load("idToken")}
+                method: "GET",
+                url: "/events/" + SDK.Student.current().id + "/myEvents",
+                headers: {
+                    authorization: SDK.Storage.load("token")
+                }
             }, cb);
         },
     },
     Student: {
         register: (firstName, lastName, email, password, verifyPassword, cb) => {
             SDK.request({
+                method: "POST",
+                url: "/register",
                 data: {
                     firstName: firstName,
                     lastName: lastName,
@@ -98,8 +123,7 @@ const SDK = {
                     password: password,
                     verifyPassword: verifyPassword
                 },
-                url: "/register",
-                method: "POST",
+
             }, (err, data) => {
 
                 if (err) {
@@ -132,27 +156,28 @@ const SDK = {
             });
         },
         current: () => {
-            return SDK.Storage.load("Student");
+            return SDK.Storage.load("token");
         },
         currentStudent: (cb) => {
             SDK.request({
                 method: "GET",
                 url: "/students/profile",
+                headers: {authorization: SDK.Storage.load("token")}
             }, cb);
         },
         getAttendingEvents: (cb) => {
             SDK.request({
                 method: "GET",
-                url: "/students/" + SDK.Student.currentStudent().idStudent + "/events",
+                url: "/students/" + SDK.Student.current().id + "/events",
                 headers: {
                     authorization: SDK.Storage.load("token")
                 }
             }, cb);
         },
         logout: () => {
-            SDK.Storage.remove("idTokens");
-            SDK.Storage.remove("idStudent");
-            SDK.Storage.remove("student");
+            SDK.Storage.remove("token");
+            SDK.Storage.remove("IdStudent");
+            SDK.Storage.remove("Student");
             window.location.href = "login.html";
         },
         loadNav: (cb) => {
@@ -161,7 +186,7 @@ const SDK = {
 
                 if (currentStudent) {
                     $(".navbar-right").html(`
-            <li><a href="home.html" id="logout-link">Logout</a></li>
+            <li><a href="login.html" id="logout-link">Logout</a></li>
           `);
                 } else {
                     $(".navbar-right").html(`
