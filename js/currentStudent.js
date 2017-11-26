@@ -11,7 +11,7 @@ $(document).ready(() => {
             <tr>
                 <td>${currentStudent.firstName}</td>
                 <td>${currentStudent.lastName}</td>
-                <td>${event.email}</td>
+                <td>${currentStudent.email}</td>
             </tr>
             `;
 

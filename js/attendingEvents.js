@@ -4,9 +4,9 @@ $(document).ready(() => {
 
     const $AttendingEventList = $("#attending-event-list");
 
-    SDK.Student.getAttendingEvents((err, events) => {
-        events = JSON.parse(events);
-        events.forEach(event => {
+    SDK.Student.getAttendingEvents((err, Event) => {
+        Event = JSON.parse(Event);
+        Event.forEach(event => {
 
         const eventHtml = `
             <tr>

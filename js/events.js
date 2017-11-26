@@ -4,9 +4,9 @@ $(document).ready(() => {
 
     const $eventList = $("#event-list");
 
-    SDK.Event.getEvents((cb, events) => {
-        events = JSON.parse(events);
-        events.forEach((event) => {
+    SDK.Event.getEvents((cb, Event) => {
+        Event = JSON.parse(Event);
+        Event.forEach((event) => {
 
             const eventHtml = `
                 <tr>
@@ -14,7 +14,7 @@ $(document).ready(() => {
                     <td>${event.owner}</td>
                     <td>${event.location}</td>
                     <td>${event.price}</td>
-                    <td>${event.date}</td>
+                    <td>${event.eventDate}</td>
                     <td>${event.description}</td>
                     <td><button type="button" id="attend-button" class="btn btn-success attend-button">Attend Event</button></td>
                     <td><button type="button" id="go-to-participants-button" class="btn btn-success participants-button">See Participants</button></td>
