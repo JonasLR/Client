@@ -183,11 +183,16 @@ const SDK = {
                 url: "/students/" + localStorage.getItem("idStudent") + "/events",
             }, cb);
         },
-        logout: () => {
-            SDK.Storage.remove("token");
-            SDK.Storage.remove("IdStudent");
-            SDK.Storage.remove("Student");
-            window.location.href = "login.html";
+        logout: (cb) => {
+            SDK.request({
+                method: "POST",
+                url: "/students/logout",
+            }, (err, data) => {
+                if (err) {
+                    return cb(err);
+                }
+                cb(null, data);
+            });
         },
         loadNav: (cb) => {
             $("#nav-container").load("nav.html", () => {
@@ -197,14 +202,25 @@ const SDK = {
 
                     if (currentStudent) {
                         $(".navbar-right").html(`
-            <li><a href="login.html" id="logout-link">Logout</a></li>
-          `);
+                              <li><a href="#" id="logout-link">Logout</a></li>          
+                        `);
                     } else {
                         $(".navbar-right").html(`
-            <li><a href="login.html">Login <span class="sr-only">(current)</span></a></li>
-          `);
+                              <li><a href="login.html">Login <span class="sr-only">(current)</span></a></li>
+                        `);
                     }
-                    $("#logout-link").click(() => SDK.Student.logout());
+                    $("#logout-link").click(() => {
+                        SDK.Student.logout((err, data) => {
+                            if (err && err.xhr.status === 401) {
+                                $(".form-group").addClass("has-error");
+                            } else {
+                                localStorage.removeItem("token");
+                                localStorage.removeItem("idStudent");
+                                window.location.href = "login.html";
+                            }
+                        });
+                    });
+
                 });
                 cb && cb();
             });
