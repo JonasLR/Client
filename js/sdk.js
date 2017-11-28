@@ -69,12 +69,18 @@ const SDK = {
                     cb(null, data);
             });
         },
-        deleteEvent: (data, cb) => {
+        deleteEvent: (idEvent, eventName, location, price, eventDate, description, cb) => {
             SDK.request({
+                data: {
+                    idEvent: idEvent,
+                    eventName: eventName,
+                    location: location,
+                    price: price,
+                    eventDate: eventDate,
+                    description: description,
+                },
                 method: "PUT",
-                url: "/events/" + SDK.Event.current().id + "/delete-event",
-                data: data,
-                headers: {authorization: SDK.Storage.load("idEvent")}
+                url: "/events/" + idEvent + "/delete-event",
             }, cb);
         },
         getEvents: (cb, events) => {

@@ -8,7 +8,7 @@ $(document).ready(() => {
         events = JSON.parse(events);
         events.forEach(event => {
 
-        const eventHtml = `
+            const eventHtml = `
             <tr>
                 <td>${event.eventName}</td>
                 <td>${event.owner}</td>
@@ -16,8 +16,8 @@ $(document).ready(() => {
                 <td>${event.price}</td>
                 <td>${event.eventDate}</td>
                 <td>${event.description}</td>
-                <td><button type="button" id="go-to-update-event-button" class="btn btn-success update-event-button">Update</button></td>
-                <td><button type="button" id="delete-event-button" class="btn btn-success delete-event-button">Delete</button></td>
+                <td><button type="button" class="btn btn-success update-event-button" data-event-id-update="${event.idEvent}">Update</button></td>
+                <td><button type="button" class="btn btn-success delete-event-button" data-event-id-delete="${event.idEvent}">Delete</button></td>
             </tr>
             `;
 
@@ -29,9 +29,20 @@ $(document).ready(() => {
         });
 
         $(".delete-event-button").click(function () {
-            const idEvent = $(this).data("event-id");
-            const event = events.find(e => e.id === idEvent);
-            SDK.Event.deleteEvent(event);
+            const idEvent = $(this).data("event-id-delete");
+            const event = events.find(event => event.idEvent === idEvent);
+
+            SDK.Event.deleteEvent(idEvent, event.eventName, event.location, event.price, event.eventDate, event.description, (err, data) => {
+                if (err && err.xhr.status === 401) {
+                    $(".form-group").addClass("has-error")
+                }
+                else if (err) {
+                    console.log("Something went wrong")
+                    window.alert("Could not delete event - Please try again");
+                } else {
+                    window.location.href = "myEvents.html";
+                }
+            });
         });
     });
 });

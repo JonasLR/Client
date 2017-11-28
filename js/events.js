@@ -3,6 +3,7 @@ $(document).ready(() => {
     SDK.Student.loadNav();
 
     const $eventList = $("#event-list");
+    const $goToParticipantsButton = $("#goToParticipantsButton");
 
     SDK.Event.getEvents((cb, events) => {
         events = JSON.parse(events);
@@ -16,15 +17,16 @@ $(document).ready(() => {
                     <td>${event.price}</td>
                     <td>${event.eventDate}</td>
                     <td>${event.description}</td>
-                    <td><button type="button" id="attend-button" class="btn btn-success attend-button" data-event-id="${event.idEvent}">Attend Event</button></td>
-                    <td><button type="button" id="go-to-participants-button"  class="btn btn-success participants-button">See Participants</button></td>
+                    <td><button type="button" id="attendButton" class="btn btn-success attendButton" data-event-id="${event.idEvent}">Attend Event</button></td>
+                    <td><button type="button" class="btn btn-success goToParticipantsButton" data-event-id="${event.idEvent}"
+                    data-toggle="modal" data-target="#participantsModal">See Participants</button></td>
                 </tr>
                 `;
 
             $eventList.append(eventHtml);
         });
 
-        $(".attend-button").click(function() {
+        $(".attendButton").click(function() {
             const idEvent = $(this).data("event-id");
             const event = events.find((event) => event.idEvent === idEvent);
             console.log(event);
@@ -41,8 +43,30 @@ $(document).ready(() => {
             })
         });
 
-        $(".go-to-participants-button").click(() => {
-            window.location.href = "attendingStudents.html"
+        $(".goToParticipantsButton").click(function() {
+            var idEvent = $(this).data("event-id");
+
+            console.log(idEvent);
+
+            SDK.Event.getAttendingStudents(idEvent, (cb, students) => {
+                if (students) {
+                    students = JSON.parse(students);
+                    students.forEach((student) => {
+                        console.log(student.firstName);
+
+                        const studentsHtml = `
+                            <d>${student.firstName} ${student.lastName}</d>
+                    `;
+
+                        $goToParticipantsButton.append(studentsHtml)
+                    });
+                } else {
+                    $("#goToParticipantsButton").html("Something happened, try again");
+                }
+            });
         });
+    });
+    $("#clearModalText").click(function () {
+        $("#goToParticipantsButton").html("");
     });
 });
