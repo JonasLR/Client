@@ -43,13 +43,25 @@ const SDK = {
         current: () => {
             return SDK.Storage.load("Event");
         },
-        updateEvent: (data, cb) => {
+        updateEvent: (eventName, location, location, description, eventDate, idEvent, cb) => {
             SDK.request({
+                data: {
+                    eventName: eventName,
+                    price: price,
+                    location: location,
+                    description: description,
+                    eventDate: eventDate,
+                },
                 method: "PUT",
-                url: "/events/" + SDK.Event.current().id + "/update-event",
-                data: data,
-                headers: {authorization: SDK.Storage.load("idEvent")}
-            }, cb);
+                url: "/events/" + idEvent + "/update-event",
+            }, (err, data) => {
+
+                if (err) return cb(err);
+
+                SDK.Storage.persist("crypted", data);
+
+                cb(null, data);
+            });
         },
         createEvent: (eventName, location, eventDate, description, price, cb) => {
             SDK.request({
@@ -198,6 +210,14 @@ const SDK = {
             });
         }
     },
+
+    Link: {
+      getParameterByName: (name) => {
+          var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+          return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+      }
+    },
+
     Storage: {
         prefix: "doekEventsSDK",
         persist: (key, value) => {

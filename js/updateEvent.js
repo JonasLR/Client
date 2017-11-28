@@ -9,10 +9,11 @@ $(document).ready(() => {
         const eventDate = $("#updateEventDate").val();
         const description = $("#updateDescription").val();
         const price = $("#updatePrice").val();
+        const idEvent = SDK.Link.getParameterByName("eventId");
 
-        SDK.Event.updateEvent(eventName, location, eventDate, description, price, (err, data) => {
+        SDK.Event.updateEvent(eventName, location, eventDate, description, price, idEvent, (err, data) => {
             if (err && err.xhr.status === 401) {
-                $(".form-group").addClass("has-error");
+                $(".form-group").addClass("has-error")
             }
             else if (err) {
                 console.log("Something went wrong. Please try again")

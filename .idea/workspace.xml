@@ -6,10 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="e170a97d-fb1f-4368-a9b0-75bd8e45059f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/events.html" afterPath="$PROJECT_DIR$/events.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/events.js" afterPath="$PROJECT_DIR$/js/events.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/myEvents.js" afterPath="$PROJECT_DIR$/js/myEvents.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/sdk.js" afterPath="$PROJECT_DIR$/js/sdk.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/updateEvent.js" afterPath="$PROJECT_DIR$/js/updateEvent.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/updateEvent.html" afterPath="$PROJECT_DIR$/updateEvent.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,32 +22,70 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="myEvents.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/js/myEvents.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="567">
-              <caret line="27" column="53" lean-forward="true" selection-start-line="27" selection-start-column="53" selection-end-line="27" selection-end-column="53" />
-              <folding>
-                <marker date="1511868639643" expanded="true" signature="266:633" ph="..." />
-                <marker date="1511868639643" expanded="true" signature="266:780" ph="..." />
-                <marker date="1511868639643" expanded="true" signature="266:835" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sdk.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/sdk.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+          <file leaf-file-name="myEvents.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/js/myEvents.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="378">
+                  <caret line="18" column="124" lean-forward="false" selection-start-line="18" selection-start-column="124" selection-end-line="18" selection-end-column="124" />
+                  <folding>
+                    <marker date="1511870352050" expanded="true" signature="266:648" ph="..." />
+                    <marker date="1511870352050" expanded="true" signature="266:755" ph="..." />
+                    <marker date="1511870352050" expanded="true" signature="266:833" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="updateEvent.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/js/updateEvent.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="525">
+                  <caret line="25" column="3" lean-forward="true" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="3" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="sdk.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/js/sdk.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="229">
+                  <caret line="45" column="41" lean-forward="false" selection-start-line="45" selection-start-column="41" selection-end-line="45" selection-end-column="41" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="updateEvent.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/updateEvent.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="777">
+                  <caret line="47" column="0" lean-forward="true" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="updateEvent.html" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/updateEvent.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="777">
+                  <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -96,9 +134,7 @@
         <option value="$PROJECT_DIR$/css/main.css" />
         <option value="$PROJECT_DIR$/js/attendingStudents.js" />
         <option value="$PROJECT_DIR$/attendingStudents.html" />
-        <option value="$PROJECT_DIR$/updateEvent.html" />
         <option value="$PROJECT_DIR$/js/createEvent.js" />
-        <option value="$PROJECT_DIR$/js/updateEvent.js" />
         <option value="$PROJECT_DIR$/login.html" />
         <option value="$PROJECT_DIR$/js/currentStudent.js" />
         <option value="$PROJECT_DIR$/currentStudent.html" />
@@ -107,8 +143,10 @@
         <option value="$PROJECT_DIR$/attendingEvents.html" />
         <option value="$PROJECT_DIR$/events.html" />
         <option value="$PROJECT_DIR$/js/events.js" />
-        <option value="$PROJECT_DIR$/js/sdk.js" />
         <option value="$PROJECT_DIR$/js/myEvents.js" />
+        <option value="$PROJECT_DIR$/updateEvent.html" />
+        <option value="$PROJECT_DIR$/js/updateEvent.js" />
+        <option value="$PROJECT_DIR$/js/sdk.js" />
       </list>
     </option>
   </component>
@@ -206,12 +244,12 @@
       <workItem from="1511208906724" duration="22050000" />
       <workItem from="1511535452088" duration="6930000" />
       <workItem from="1511602713912" duration="16814000" />
-      <workItem from="1511698857618" duration="25069000" />
+      <workItem from="1511698857618" duration="28184000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="99345000" />
+    <option name="totallyTimeSpent" value="102460000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -338,9 +376,9 @@
         <state relative-caret-position="819">
           <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
           <folding>
-            <marker date="1511868639643" expanded="true" signature="266:633" ph="..." />
-            <marker date="1511868639643" expanded="true" signature="266:780" ph="..." />
-            <marker date="1511868639643" expanded="true" signature="266:835" ph="..." />
+            <marker date="1511870352050" expanded="true" signature="266:648" ph="..." />
+            <marker date="1511870352050" expanded="true" signature="266:755" ph="..." />
+            <marker date="1511870352050" expanded="true" signature="266:833" ph="..." />
           </folding>
         </state>
       </provider>
@@ -459,22 +497,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/updateEvent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="12" column="58" lean-forward="false" selection-start-line="12" selection-start-column="58" selection-end-line="12" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/updateEvent.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -615,14 +637,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/sdk.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/events.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
@@ -646,13 +660,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/myEvents.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="27" column="53" lean-forward="true" selection-start-line="27" selection-start-column="53" selection-end-line="27" selection-end-column="53" />
+        <state relative-caret-position="378">
+          <caret line="18" column="124" lean-forward="false" selection-start-line="18" selection-start-column="124" selection-end-line="18" selection-end-column="124" />
           <folding>
-            <marker date="1511868639643" expanded="true" signature="266:633" ph="..." />
-            <marker date="1511868639643" expanded="true" signature="266:780" ph="..." />
-            <marker date="1511868639643" expanded="true" signature="266:835" ph="..." />
+            <marker date="1511870352050" expanded="true" signature="266:648" ph="..." />
+            <marker date="1511870352050" expanded="true" signature="266:755" ph="..." />
+            <marker date="1511870352050" expanded="true" signature="266:833" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/updateEvent.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="777">
+          <caret line="47" column="0" lean-forward="true" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/updateEvent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="25" column="3" lean-forward="true" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/sdk.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="45" column="41" lean-forward="false" selection-start-line="45" selection-start-column="41" selection-end-line="45" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>

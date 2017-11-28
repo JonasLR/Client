@@ -16,16 +16,12 @@ $(document).ready(() => {
                 <td>${event.price}</td>
                 <td>${event.eventDate}</td>
                 <td>${event.description}</td>
-                <td><button type="button" class="btn btn-success update-event-button" data-event-id-update="${event.idEvent}">Update</button></td>
+                <td><a href="updateEvent.html?eventId=${event.idEvent}"><button class="btn btn-success update-event-button">Update</button></td>
                 <td><button type="button" class="btn btn-success delete-event-button" data-event-id-delete="${event.idEvent}">Delete</button></td>
             </tr>
             `;
 
             $myEventList.append(eventHtml);
-        });
-
-        $(".go-to-update-event-button").click(() => {
-            window.location.href = "updateEvent.html"
         });
 
         $(".delete-event-button").click(function () {
