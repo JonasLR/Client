@@ -43,14 +43,14 @@ const SDK = {
         current: () => {
             return SDK.Storage.load("Event");
         },
-        updateEvent: (eventName, location, location, description, eventDate, idEvent, cb) => {
+        updateEvent: (eventName, location, eventDate, description, price, idEvent, cb) => {
             SDK.request({
                 data: {
                     eventName: eventName,
-                    price: price,
                     location: location,
-                    description: description,
                     eventDate: eventDate,
+                    description: description,
+                    price: price
                 },
                 method: "PUT",
                 url: "/events/" + idEvent + "/update-event",
