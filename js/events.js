@@ -8,7 +8,7 @@ $(document).ready(() => {
         events = JSON.parse(events);
         events.forEach((event) => {
 
-            const eventHtml = `
+            let eventHtml = `
                 <tr>
                     <td>${event.eventName}</td>
                     <td>${event.owner}</td>

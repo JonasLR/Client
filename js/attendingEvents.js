@@ -7,13 +7,11 @@ $(document).ready(() => {
     SDK.Student.getAttendingEvents((cb, events) => {
         events = JSON.parse(events);
         events.forEach(event => {
-
-        const eventHtml = `
+        let eventHtml = `
             <tr>
                 <td>${event.eventName}</td>
                 <td>${event.owner}</td>
                 <td>${event.location}</td>
-                <td>${event.price}</td>
                 <td>${event.eventDate}</td>
                 <td>${event.description}</td>
             </tr>
