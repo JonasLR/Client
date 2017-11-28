@@ -21,22 +21,21 @@ const SDK = {
 
     },
     Event: {
-        attendEvent: (event) => {
-            let attendingStudents = SDK.Storage.load("attendingStudents");
-
-            //check if the event exists, and if true add the event
-            let foundEvent = attendingStudents.find(e => e.event.id === event.id);
-            if (foundEvent) {
-                let i = attendingStudents.indexOf(foundEvent);
-                attendingStudents[i].count++;
-            } else {
-                attendingStudents.push({
-                    count: 1,
-                    event: event
-                });
-            }
-
-            SDK.Storage.persist("attendingStudents", attendingStudents);
+        attendEvent: (idEvent, eventName, location, price, eventDate, description, cb) => {
+            SDK.request({
+                data: {
+                    idEvent: idEvent,
+                    eventName: eventName,
+                    price: price,
+                    location: location,
+                    description: description,
+                    eventDate: eventDate,
+                },
+                method: "POST",
+                url: "/events/join"
+            }, (err, data) => {
+                cb(null, data);
+            });
         },
         current: () => {
             return SDK.Storage.load("Event");
@@ -95,9 +94,7 @@ const SDK = {
             SDK.request({
                 method: "GET",
                 url: "/events/" + SDK.Student.current().id + "/myEvents",
-                headers: {
-                    authorization: SDK.Storage.load("token")
-                }
+                headers: {authorization: SDK.Storage.load("token")}
             }, cb);
         },
     },
@@ -155,12 +152,14 @@ const SDK = {
                 headers: {authorization: SDK.Storage.load("token")}
             }, cb);
         },
-        getAttendingEvents: (cb) => {
+        getAttendingEvents: (cb, events) => {
             SDK.request({
                 method: "GET",
                 url: "/students/" + SDK.Student.current().id + "/events",
                 headers: {
-                    authorization: SDK.Storage.load("token")
+                    filter: {
+                        include: ["events"]
+                    }
                 }
             }, cb);
         },

@@ -4,7 +4,7 @@ $(document).ready(() => {
 
     const $attendingEventList = $("#attending-event-list");
 
-    SDK.Student.getAttendingEvents((err, events) => {
+    SDK.Student.getAttendingEvents((cb, events) => {
         events = JSON.parse(events);
         events.forEach(event => {
 
