@@ -52,10 +52,13 @@ $(document).ready(() => {
                 if (students) {
                     students = JSON.parse(students);
                     students.forEach((student) => {
-                        console.log(student.firstName);
 
                         const studentsHtml = `
-                            <d>${student.firstName} ${student.lastName}</d>
+                        <tr>
+                            <td>${student.firstName}</td> 
+                            <td>${student.lastName}</td>
+                        </tr>
+                            
                     `;
 
                         $goToParticipantsButton.append(studentsHtml)

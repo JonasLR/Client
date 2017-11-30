@@ -3,15 +3,6 @@ body {
     color: #b0c4de;
 }
 
-input[type=text], input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
 .footer {
     position: fixed;
     left: 0;
@@ -40,14 +31,6 @@ button {
     border: none;
     cursor: pointer;
     width: 100%;
-}
-
-.page-header {
-    width:100%;
-    height:20px;
-    margin-bottom: 20px;
-    color: black;
-    text-align: center;
 }
 
 .page-sub-header {
@@ -80,33 +63,9 @@ button {
     margin-right: auto;
 }
 
-.topnav {
-    overflow: hidden;
-    background-color: darkslategrey;
-}
-
-.topnav a {
-    float: left;
-    display: block;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-}
-
-.topnav a:hover {
-    background-color: #ddd;
-    color: black;
-}
-
 .active {
     background-color: black;
     color: white;
-}
-
-.topnav .icon {
-    display: none;
 }
 
 .btn btn-default {
@@ -120,5 +79,9 @@ button {
     margin-right: auto;
 }
 
-
-
+.image {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: auto;
+}
