@@ -26,8 +26,8 @@ $(document).ready(() => {
                 else if (err) {
                     console.log("Something went wrong. Please try again")
                 } else {
-                    window.alert("You are now logged in");
-                    window.location.href = "home.html";
+                    window.alert("Please login with your new user");
+                    window.location.href = "login.html";
                 }
             });
         }
